@@ -1,6 +1,6 @@
 // A palavra "classe" define que estamos criando um molde.
 // A palavra "export" permite que esse arquivo seja usado por outros arquivos 
-// (como o app.ts)
+// (como o app.ts) 
 export class Player {
     public name: string; // O nome do jogador (texto)
     public health: number; // A saúde do jogador (número)
@@ -33,9 +33,22 @@ export class Player {
         // Regra para garantir que a saúde não fique negativa
         if(this.health < 0) {
             this.health = 0; // Garante que a saúde não fique negativa
-            return '${this.name} foi derrotado!';
+            return `${this.name} foi derrotado!`;
         }
-
-        return '${this.name} recebeu ${amount} de dano e agora tem ${this.health} de saúde.';
+        return `${this.name} recebeu ${amount} de dano! Vida atual: ${this.health}`;
+    }
+    // O método "heal" é um método que recebe um número como parâmetro e não retorna nada (void).
+        public heal(amount: number): string {
+        this.health += amount;
+        // Regra para garantir que a saúde não ultrapasse 100
+        if(this.health > 100) {
+            this.health = 100; // Garante que a saúde não ultrapasse 100
+            return `${this.name} foi totalmente curado!`;
+        }
+        return `${this.name} recuperou ${amount} de saúde!`;
+    }
+        public upLevel(): string {
+        this.level++;
+        return `${this.name} subiu para o nível ${this.level}!`;
     }
 }
